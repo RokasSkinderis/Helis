@@ -1,4 +1,4 @@
-//FONT
+/* FONT */
 @font-face {
   font-family: 'Quantico';
   src: url('_used font/Quantico-Bold.ttf');
@@ -7,139 +7,189 @@
   src: url('_used font/Quantico-Regular.ttf');
 }
 
-//VARIABLES
+/* VARIABLES */
 @hover-color: #842a9b;
 @article-color: #0d1129;
 
-//BODY
+/* mixins */
+
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+/* BODY */
 body {
   font-family: 'Quantico', sans-serif;
   font-size: 0;
   background-color: #f0eef2;
 }
 
-// HEADER
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
 header {
+  background: rgba(77, 27, 168, 1) url("_images/gradient.png") no-repeat left;
+  height: 131px;
+
   nav {
     width: 100%;
-    background-color: #4d1ba8;
-    color: #fff;
-    display: flex;
+    padding: 20px 15px 0 2%;
+    margin: auto;
+    position: relative;
+    .clearfix;
 
-    .leftSide {
-      width: 50%;
-      padding-left: 5%;
-      box-sizing: border-box;
-
-      img {
-        margin: 20px 0 13px 0;
-        max-width: 265px;
-        height: auto;
-      }
+    .sandwich, #toggle-submenu {
+      display: none;
     }
 
-    .rightSide {
-      width: 50%;
-      padding-right: 5%;
+    .sandwich {
+      max-width: 50px;
+      margin-top: 44px;
+      float: right;
+      background-color: transparent;
+      border: 0;
+      outline: none;
+    }
+
+    .logo {
+      max-width: 265px;
+      height: auto;
+      float: left;
+      padding-bottom: 13px;
+    }
+
+    ul {
+      text-align: right;
       vertical-align: bottom;
-      align-self: flex-end;
-      box-sizing: border-box;
+      font-size: 22px;
+      float: right;
+      margin-top: 70px;
 
       li {
-        position: relative;
         display: inline-block;
-        font-size: 22px;
-        margin-bottom: 20px;
-        margin-left: 2%;
+        padding: 10px 20px;
         cursor: pointer;
+        position: relative;
+
+        a {
+          text-decoration: none;
+          color: #fff;
+
+          &:hover {
+            color: #ef4b74;
+          }
+
+          &:focus, &:active {
+            outline: none;
+          }
+        }
+
+        .dropdown {
+          padding-top: 10px;
+          width: 175px;
+          text-align: left;
+          position: absolute;
+          background-color: #ef4b74;
+          top: 40px;
+          left: 10px;
+          display: none;
+          border-radius: 5px;
+
+          &:before {
+            content: "";
+            top: -8px;
+            left: 9px;
+            position: absolute;
+            border-bottom: 8px solid #ef4b74;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+          }
+
+          ul {
+            width: 100%;
+            margin-top: 0;
+          }
+
+          li {
+            display: block;
+            text-align: left;
+            border-bottom: 1px solid #0d1129;
+            padding: 0;
+            a {
+              color: #0d1129;
+              font-size: 16px;
+              display: block;
+              padding: 10px 20px;
+            }
+          }
+        }
+
+        .dropdown li:nth-of-type(1) {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+
+        .dropdown li:last-of-type {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          border: none;
+        }
+
+        .dropdown li:hover a {
+          background-color: #ff6f93;
+          color: #fff;
+        }
+
       }
 
-      li:focus {
+      li:last-of-type {
+        padding-right: 0;
+      }
+
+      li:active {
         color: @hover-color;
         outline: none;
+
+        .dropdown {
+          display: block;
+        }
       }
 
       li:hover {
         color: @hover-color;
-      }
 
-      // DROPDOWN Zinau ir prizadu niekad nedaryti pure CSS dropdown, tiesiog pasirode puiki proga isbandyti. +1 uz lankstuma?
-
-      .dropdown {
-        display: none;
-      }
-
-      .dropdown {
-        width: 175px;
-        position: absolute;
-        top: 132px;
-        left: 50%;
-      }
-
-      .dropdown .arrow {
-        width: 14px;
-        height: 14px;
-        position: absolute;
-        top: -7px;
-        left: 11px;
-        background-color: #ef4b74;
-        transform: rotate(45deg);
-      }
-
-      .dropdown li {
-        display: block;
-        width: 100%;
-        color: #0d1129;
-        font-size: 16px;
-        background-color: #ef4b74;
-        border-bottom: 1px solid #bf3b5c;
-        margin: auto;
-        line-height: 30px;
-        padding-left: 20px;
-      }
-
-      .dropdown li:hover {
-        background-color: #ff6f93;
-        color: #fff;
-      }
-
-      .dropdown li:nth-of-type(1) {
-        padding-top: 10px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-      }
-
-      .dropdown li:nth-of-type(5) {
-        border: none;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-      }
-
-      li:focus + .dropdown {
-        display: block;
+        .dropdown {
+          display: block;
+        }
       }
     }
   }
 }
 
-//MAIN
+/* MAIN */
 
 main {
   background-color: #f0eef2;
-  padding: 40px 5%;
-  font-size: 0;
+  padding: 40px 2%;
+  margin: auto;
+  width: 100%;
   display: flex;
   align-items: flex-start;
 
-  //ARTICLE
+  /* ARTICLE */
   article {
     background-color: #fff;
+    max-width: 100%;
     padding: 16px 20px;
     margin-right: 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 75%;
 
     h1 {
       font-size: 30px;
@@ -155,13 +205,21 @@ main {
     }
   }
 
-  //ASIDE
+  /* ASIDE */
   aside {
-    display: inline-block;
-    width: 25%;
     min-width: 265px;
+    /* Del IE11 flex child reik nustatyt max width */
+    max-width: 100%;
     text-align: center;
     color: @article-color;
+
+    span {
+      display: block;
+      font-size: 16px;
+      margin: 10px 10px;
+      color: #e74c3c;
+      line-height: 20px;
+    }
 
     h4 {
       font-size: 22px;
@@ -186,7 +244,6 @@ main {
         display: block;
         font-size: 16px;
         color: #ef4b74;
-        box-sizing: border-box;
         margin-bottom: 10px;
       }
 
@@ -194,9 +251,6 @@ main {
         margin-bottom: 20px;
         width: 100%;
         padding: 11px 10px 9px 10px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
         border-radius: 5px;
         font-family: 'Quantico', sans-serif;
         border: 1px solid #d2ccda;
@@ -205,9 +259,6 @@ main {
       textarea {
         width: 100%;
         margin-bottom: 20px;
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
         padding: 11px 10px 80px 10px;
         overflow: auto;
         border-radius: 5px;
@@ -230,7 +281,7 @@ main {
   }
 }
 
-//INFO BLOCKS
+/* INFO BLOCKS */
 section {
   display: flex;
   padding: 0 5%;
@@ -245,27 +296,33 @@ section {
   }
 }
 
-//FOOTER
+/* FOOTER */
 footer {
   background-color: #a4a2a6;
   padding: 20px 5%;
 
+  section {
+    background: #a4a2a6;
+    flex-direction: column;
+  }
+
   ul {
     width: 100%;
-    list-style: disc;
     overflow: auto;
     padding-bottom: 16px;
 
     li {
-      // Nezinau kodel, bet psd buvo sitas list Myriad Pro.
-      font-family: 'Myriad Pro', sans-serif;
-      float: left;
+      display: inline-block;
+    }
+
+    li a {
+      display: list-item;
+      list-style-type: disc;
+      font-family: 'Myriad', sans-serif;
       font-size: 16px;
       color: #fff;
-      margin-right: 4%;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
+      margin-right: 28px;
+      text-decoration: none;
     }
   }
 

@@ -1,10 +1,127 @@
-@media screen and (max-width: 1000px) {
-  nav {
-    .leftSide {
-      width: 15%;
+@media only screen and (max-width: 360px) {
+  header nav .logo {
+    max-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 786px) {
+  header {
+    nav {
+
+      ul {
+        display: block;
+        max-height: 0;
+        position: absolute;
+        top: 131px;
+        left: 0;
+        right: 0;
+        margin-top: 0;
+        transition: max-height 0.5s;
+        background-color: #4d1ba8;
+        opacity: 0;
+        &.toggled {
+          max-height: 500px;
+          opacity: 1;
+        }
+
+        li {
+          display: block;
+          text-align: left;
+
+          &:hover .dropdown {
+            display: none;
+          }
+
+          #submenu li {
+            background-color: #fff;
+          }
+
+          #submenu li a {
+            background-color: transparent;
+          }
+
+          .dropdown li:hover a {
+            background-color: #fff;
+            color: #0d1129;
+          }
+        }
+
+        #toggle-submenu {
+          background: none;
+          border: none;
+          outline: none;
+          width: 30px;
+          cursor: pointer;
+          float: right;
+        }
+
+        li #submenu {
+          width: 100%;
+          padding-top: 0;
+
+          ul {
+            position: static;
+            max-height: 500px;
+            opacity: 1;
+            background-color: transparent;
+            margin-bottom: 10px;
+          }
+
+          &:before {
+            display: none;
+          }
+
+          &.toggled {
+            opacity: 1;
+            display: block;
+            position: static;
+          }
+        }
+      }
+
+      .sandwich, #toggle-submenu {
+        display: inline-block;
+      }
+
+      .dropdown {
+        position: relative;
+      }
     }
-    .rightSide {
-      width: 85%;
+  }
+
+  main {
+    flex-direction: column;
+
+    article {
+      margin-bottom: 20px;
+      margin-right: 0;
     }
+  }
+
+  section {
+    flex-direction: column;
+
+    article {
+      width: 100%;
+    }
+  }
+
+  footer {
+    ul {
+      text-align: center;
+    }
+
+    ul li {
+      display: block;
+      list-style-type: disc;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  header nav ul li {
+          font-size: 18px;
+          padding-right: 10px;
   }
 }
